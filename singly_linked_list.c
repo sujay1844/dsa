@@ -34,7 +34,7 @@ int prepend(struct Node **head, int data) {
 	return 0;
 }
 
-int print_list(struct Node **head) {
+int print(struct Node **head) {
 	if(*head == NULL) return 1;
 
 	struct Node *traverse = *head;
@@ -98,7 +98,7 @@ int pop(struct Node **head, int index) {
 	return 0;
 }
 
-int delete_list(struct Node **head) {
+int delete(struct Node **head) {
 	while(pop(head) == 0);
 }
 
@@ -143,14 +143,6 @@ int search(struct Node **head, int search_term) {
 	return -1;
 }
 
-int search_rec(struct Node **head, int search_term, int index) {
-	if (*head == NULL)
-		return -1;
-	if ((*head)->data == search_term)
-		return index;
-	return search_rec((*head)->next, search_term, index + 1);
-}
-
 int main() {
 	struct Node *head = NULL;
 	prepend(&head, 9);
@@ -161,5 +153,5 @@ int main() {
 	append(&head, 3);
 	pop(&head);
 	print_list_as_table(&head);
-	delete_list(&head);
+	delete(&head);
 }
