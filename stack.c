@@ -1,32 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Plate {
+struct Node {
 	int data;
-	struct Plate *below;
+	struct Node *next;
 };
 
-int put_plate(struct Plate **top_plate, int data) {
-	struct Plate *new_plate = malloc(sizeof(struct Plate));
+int put_plate(struct Node **top_plate, int data) {
+	struct Node *new_plate = malloc(sizeof(struct Node));
 	new_plate->data = data;
-	new_plate->below = *top_plate;
+	new_plate->next = *top_plate;
 	*top_plate = new_plate;
 	return 0;
 }
 
-int get_plate(struct Plate **top_plate) {
+int get_plate(struct Node **top_plate) {
 	if(*top_plate == NULL) {
 		return -1;
 	}
-	struct Plate *old_plate = *top_plate;
+	struct Node *old_plate = *top_plate;
 	int data = old_plate->data;
-	*top_plate = old_plate->below;
+	*top_plate = old_plate->next;
 	free(old_plate);
 	return data;
 }
 
 int main() {
-	struct Plate *top_plate = NULL;
+	struct Node *top_plate = NULL;
 	put_plate(&top_plate, 8);
 	put_plate(&top_plate, 23);
 	put_plate(&top_plate, 45);
