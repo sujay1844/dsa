@@ -70,7 +70,9 @@ int main() {
 
     struct StackNode *head = malloc(sizeof(struct StackNode));
     for(int i = 0; i < strlen(input); i++) {
-        struct Node *current = createNode(input[i]);
+        char currentChar = input[i];
+        if(currentChar == ' ' || currentChar == '\n') continue;
+        struct Node *current = createNode(currentChar);
         if(isOperand(current->data)) {
             push(&head, current);
         } else {
